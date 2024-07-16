@@ -1,0 +1,25 @@
+services:
+  node-app:
+    build:
+      context: .
+      target: dev
+      args:
+        NODE_ENV: dev
+    volumes:
+      - ./src:/app/src
+    environment:
+      - NODE_ENV=dev
+      - MONGO_USER=admin
+      - MONGO_PASSWORD=password
+      - SESSION_SECRET=Premiere-Greeter-Gently3-Giggling-Dormitory-Salt
+  
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:
